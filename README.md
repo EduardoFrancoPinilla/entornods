@@ -2,7 +2,7 @@
 - Entorno Docker para el módulo de Desarrollo Web en Entorno Servidor
 - Iniciar servicio:
     docker-compose up -d
-- Para servicio
+- Parar servicio
     docker-compose down
 
 
