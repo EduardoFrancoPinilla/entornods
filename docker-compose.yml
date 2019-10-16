@@ -41,6 +41,20 @@ services:
       - frontend
       - backend
 
+  tema1:
+    image: php:7.3-apache
+    container_name: tema1
+    hostname: tema1
+    volumes:
+      - ./data/tema1:/var/www/html
+    
+    environment:
+      - VIRTUAL_HOST=tema1.com,www.tema1.com
+    restart: always
+    networks:
+      - frontend
+      - backend
+
   web2:
     image: php:7.3-apache
     container_name: web2
@@ -61,6 +75,20 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - PMA_HOST=db
       - VIRTUAL_HOST=phpmyadmin.docker
+    networks:
+      - frontend
+      - backend
+  introduccionphp:
+    build: ./dockerfiles/introduccionphp
+    container_name: introduccionphp
+    hostname: introduccionphp
+    volumes:
+      - ./data/introduccionphp:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - VIRTUAL_HOST=introduccionphp.local, www.introduccionphp.local
+    restart: always
     networks:
       - frontend
       - backend
