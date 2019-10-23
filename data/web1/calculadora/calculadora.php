@@ -43,7 +43,7 @@ class App
             }
             echo "La solución es: ".$solucion;
            unset($_SESSION);
-        }
+        
         require('vista.php');
       
     }
