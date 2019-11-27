@@ -12,6 +12,21 @@ services:
       - "./conf/my_custom_proxy_settings.conf:/etc/nginx/conf.d/my_custom_proxy_settings.conf:ro"
     networks:
       - frontend
+  mvc:
+    build: ./dockerfiles/mvc
+    container_name: mvc
+    hostname: mvc
+    volumes:
+      - ./data/mvc2:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - VIRTUAL_HOST=mvc.local,www.mvc.local
+    restart: always
+    networks:
+      - frontend
+      - backend
+
   db:
     hostname: db
     image: mysql:5.7
@@ -46,7 +61,7 @@ services:
     container_name: tema1
     hostname: tema1
     volumes:
-      - ./data/tema1:/var/www/html
+      - ./data/examen1901:/var/www/html
     
     environment:
       - VIRTUAL_HOST=tema1.com,www.tema1.com
